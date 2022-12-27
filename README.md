@@ -10,7 +10,7 @@ If you want more context on how this works, see:
 
 📄 [Documentation](https://docs.technotim.live/posts/k3s-etcd-ansible/) (including example commands)
 
-📺 [Video](https://www.youtube.com/watch?v=CbkEWcUZ7zM)
+📺 [Watch the Video](https://www.youtube.com/watch?v=CbkEWcUZ7zM)
 
 ## 📖 k3s Ansible Playbook
 
@@ -30,11 +30,11 @@ on processor architecture:
 
 - Deployment environment must have Ansible 2.4.0+.  If you need a quick primer on Ansible [you can check out my docs and setting up Ansible](https://docs.technotim.live/posts/ansible-automation/).
 
+- You will also need to install collections that this playbook uses by running `ansible-galaxy collection install -r ./collections/requirements.yml` (important❗)
+
 - [`netaddr` package](https://pypi.org/project/netaddr/) must be available to Ansible. If you have installed Ansible via apt, this is already taken care of. If you have installed Ansible via `pip`, make sure to install `netaddr` into the respective virtual environment.
 
 - `server` and `agent` nodes should have passwordless SSH access, if not you can supply arguments to provide credentials `--ask-pass --ask-become-pass` to each command.
-
-- You will also need to install collections that this playbook uses by running `ansible-galaxy collection install -r ./collections/requirements.yml`
 
 ## 🚀 Getting Started
 
@@ -112,9 +112,13 @@ It is run automatically in CI, but you can also run the tests locally.
 This might be helpful for quick feedback in a few cases.
 You can find more information about it [here](molecule/README.md).
 
+### Pre-commit Hooks
+
+This repo uses `pre-commit` and `pre-commit-hooks` to lint and fix common style and syntax errors.  Be sure to install python packages and then run `pre-commit install`.  For more information, see [pre-commit](https://pre-commit.com/)
+
 ## Thanks 🤝
 
-This repo is really standing on the shoulders of giants. Thank you to all those who have contributed and tanks to these repos for code and ideas:
+This repo is really standing on the shoulders of giants. Thank you to all those who have contributed and thanks to these repos for code and ideas:
 
 - [k3s-io/k3s-ansible](https://github.com/k3s-io/k3s-ansible)
 - [geerlingguy/turing-pi-cluster](https://github.com/geerlingguy/turing-pi-cluster)
