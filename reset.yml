@@ -1,13 +1,20 @@
 ---
-
 - hosts: k3s_cluster
   gather_facts: yes
   become: yes
   roles:
     - role: reset
-    - role: raspberrypi
-      vars: {state: absent}
+    # - role: raspberrypi
+      # vars: {state: absent}
   post_tasks:
+    - name: Delete ceph
+      ansible.builtin.file:
+        path: /var/lib/rook
+        state: absent
+    - name: Delete longhorn
+      ansible.builtin.file:
+        path: /var/lib/longhorn
+        state: absent
     - name: Reboot and wait for node to come back up
       reboot:
         reboot_timeout: 3600
